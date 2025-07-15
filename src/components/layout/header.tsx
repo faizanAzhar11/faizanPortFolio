@@ -1,136 +1,86 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
-import { useTheme } from 'next-themes';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Sun, Moon, Download } from 'lucide-react';
+import { motion } from 'framer-motion';
+import SocialLinks from '../ui/SocialLinks';
+import { personalInfo } from '../../data/personal-info';
 
-const navigation = [
-  { name: 'About', href: '#about' },
-  { name: 'Tech Stack', href: '#tech-stack' },
-  { name: 'Experience', href: '#experience' },
-  { name: 'Projects', href: '#projects' },
-  { name: 'Certifications', href: '#certifications' },
-  { name: 'Contact', href: '#contact' },
-];
+const Header: React.FC = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-export function Header() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const { theme, setTheme } = useTheme();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const navItems = [
+    { name: 'Home', href: '#' },
+    { name: 'About', href: '#about' },
+    { name: 'Experience', href: '#experience' },
+    { name: 'Skills', href: '#skills' },
+    { name: 'Projects', href: '#projects' },
+    { name: 'Contact', href: '#contact' }
+  ];
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-background/80 backdrop-blur-md border-b border-border'
-          : 'bg-transparent'
-      }`}
-    >
-      <nav className="container-padding mx-auto max-w-7xl">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <Link
-            href="/"
-            className="text-2xl font-bold bg-gradient-to-r from-primary-500 to-primary-700 bg-clip-text text-transparent hover:scale-105 transition-transform duration-200"
-          >
-            FA
+    <header className="fixed top-0 w-full bg-white/90 backdrop-blur-sm shadow-sm z-50 dark:bg-gray-900/90">
+      <nav className="container mx-auto px-4 py-4">
+        <div className="flex justify-between items-center">
+          {/* Logo/Name */}
+          <Link href="/" className="text-2xl font-bold text-gray-800 hover:text-blue-600 transition-colors dark:text-white dark:hover:text-blue-400">
+            {personalInfo.name.split(' ')[0]}
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            {navigation.map((item) => (
-              <Link
+            {navItems.map((item) => (
+              <a
                 key={item.name}
                 href={item.href}
-                className="text-foreground/80 hover:text-foreground transition-colors duration-200 text-sm font-medium relative group"
+                className="text-gray-600 hover:text-blue-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400"
               >
                 {item.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
-              </Link>
+              </a>
             ))}
+            <SocialLinks className="flex items-center gap-3 ml-4" />
           </div>
 
-          {/* Action Buttons */}
-          <div className="flex items-center space-x-4">
-            {/* Theme Toggle */}
-            <button
-              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              className="p-2 rounded-lg hover:bg-muted transition-colors duration-200"
-              aria-label="Toggle theme"
-            >
-              {theme === 'dark' ? (
-                <Sun className="w-5 h-5" />
-              ) : (
-                <Moon className="w-5 h-5" />
-              )}
-            </button>
-
-            {/* Resume Download */}
-            <Link
-              href="/resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden sm:flex items-center space-x-2 bg-primary text-primary-foreground px-4 py-2 rounded-lg hover:bg-primary/90 transition-all duration-200 text-sm font-medium hover:scale-105"
-            >
-              <Download className="w-4 h-4" />
-              <span>Resume</span>
-            </Link>
-
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden p-2 rounded-lg hover:bg-muted transition-colors duration-200"
-              aria-label="Toggle mobile menu"
-            >
-              {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
-          </div>
+          {/* Mobile Menu Button */}
+          <button
+            className="md:hidden"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle Menu"
+          >
+            <div className="w-6 h-6 flex flex-col justify-center">
+              <span className={`block h-0.5 w-6 bg-gray-600 transition-transform ${isMenuOpen ? 'rotate-45 translate-y-1' : ''}`} />
+              <span className={`block h-0.5 w-6 bg-gray-600 mt-1 transition-opacity ${isMenuOpen ? 'opacity-0' : ''}`} />
+              <span className={`block h-0.5 w-6 bg-gray-600 mt-1 transition-transform ${isMenuOpen ? '-rotate-45 -translate-y-1' : ''}`} />
+            </div>
+          </button>
         </div>
 
-        {/* Mobile Navigation */}
-        <AnimatePresence>
-          {isOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              className="md:hidden overflow-hidden"
-            >
-              <div className="py-4 space-y-4 border-t border-border">
-                {navigation.map((item) => (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    onClick={() => setIsOpen(false)}
-                    className="block text-foreground/80 hover:text-foreground transition-colors duration-200 text-sm font-medium"
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-                <Link
-                  href="/resume.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center space-x-2 bg-primary text-primary-foreground px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors duration-200 text-sm font-medium w-fit"
-                >
-                  <Download className="w-4 h-4" />
-                  <span>Resume</span>
-                </Link>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {/* Mobile Menu */}
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="md:hidden mt-4 pb-4"
+          >
+            {navItems.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                className="block py-2 text-gray-600 hover:text-blue-600 transition-colors dark:text-gray-300 dark:hover:text-blue-400"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {item.name}
+              </a>
+            ))}
+            <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+              <SocialLinks className="flex items-center gap-4" />
+            </div>
+          </motion.div>
+        )}
       </nav>
     </header>
   );
-}
+};
+
+export default Header;

@@ -1,13 +1,13 @@
 import { Metadata } from 'next';
-import { Header } from '@/components/layout/header';
-import { Hero } from '@/components/sections/hero';
-import { About } from '@/components/sections/about';
+import Header from '@/components/layout/header';
+import Hero from '@/components/sections/hero';
+import About from '@/components/sections/about';
 import { TechStack } from '@/components/sections/tech-stack';
-import { Experience } from '@/components/sections/experience';
-import { Projects } from '@/components/sections/projects';
+import Experience from '@/components/sections/experience';
+import Projects from '@/components/sections/projects';
 import { Certifications } from '@/components/sections/certifications';
-import { Contact } from '@/components/sections/contact';
-import { Footer } from '@/components/layout/footer';
+import Contact from '@/components/sections/contact';
+import Footer from '@/components/layout/footer';
 import BlogPreview from '@/components/sections/blog-preview';
 
 export const metadata: Metadata = {

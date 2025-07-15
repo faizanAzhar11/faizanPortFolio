@@ -1,147 +1,140 @@
 'use client';
 
+import React from 'react';
 import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { Code2, Users, Lightbulb, Award } from 'lucide-react';
+import { FaCode, FaUsers, FaLightbulb, FaRocket } from 'react-icons/fa';
+import { personalInfo } from '../../data/personal-info';
 
-const highlights = [
-  {
-    icon: Code2,
-    title: 'Full Stack Expertise',
-    description: 'Expert in modern web technologies including React, Next.js, .NET Core, and cloud platforms.'
-  },
-  {
-    icon: Users,
-    title: 'Team Leadership',
-    description: 'Led development teams and successfully delivered complex projects for international clients.'
-  },
-  {
-    icon: Lightbulb,
-    title: 'Innovation Focus',
-    description: 'Passionate about AI/ML integration and creating cutting-edge solutions using Azure AI services.'
-  },
-  {
-    icon: Award,
-    title: 'Microsoft Certified',
-    description: 'Multiple Microsoft certifications in Azure AI, Data Science, and Power Platform.'
-  }
-];
-
-export function About() {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
+const About: React.FC = () => {
+  const highlights = [
+    {
+      icon: FaCode,
+      title: "7+ Years Experience",
+      description: "Deep expertise in modern web technologies"
+    },
+    {
+      icon: FaUsers,
+      title: "Team Leadership",
+      description: "Led multiple development teams successfully"
+    },
+    {
+      icon: FaLightbulb,
+      title: "Innovation Focus",
+      description: "Continuous learning and adapting to new technologies"
+    },
+    {
+      icon: FaRocket,
+      title: "Performance Optimization",
+      description: "60% reduction in loading times achieved"
+    }
+  ];
 
   return (
-    <section id="about" className="section-padding bg-background">
-      <div className="container-padding mx-auto max-w-7xl" ref={ref}>
+    <section id="about" className="py-20 bg-white dark:bg-gray-900 relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='1.5'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+        }}></div>
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          animate={inView ? { y: 0, opacity: 1 } : {}}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center space-y-4 mb-16"
+          viewport={{ once: true }}
+          className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
-            About <span className="text-primary">Me</span>
+          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent mb-4">
+            About Me
           </h2>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-            Dedicated software developer with a passion for creating high-quality products
-          </p>
+          <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-6 rounded-full"></div>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left Column - Story */}
+          {/* Content */}
           <motion.div
-            initial={{ x: -50, opacity: 0 }}
-            animate={inView ? { x: 0, opacity: 1 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="space-y-6"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
           >
-            <div className="prose prose-lg dark:prose-invert max-w-none">
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                I am a dedicated software developer who loves creating high-quality products in competitive environments. 
-                Currently working as a <strong className="text-foreground">Senior Software Engineer & Technical Consultant</strong> at 
-                Tekenable Ltd, where I lead development teams and deliver innovative solutions.
+            <h3 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white mb-6">
+              Building Digital Experiences That Matter
+            </h3>
+            
+            <div className="space-y-4 text-gray-600 dark:text-gray-400 leading-relaxed">
+              <p>
+                With over 7 years of experience in software engineering, I specialize in creating 
+                scalable web applications using cutting-edge technologies. My journey has taken me 
+                through various domains including fintech, e-commerce, and healthcare.
               </p>
               
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                My expertise spans across <strong className="text-foreground">full-stack development</strong>, 
-                <strong className="text-foreground"> cloud architecture</strong>, and 
-                <strong className="text-foreground"> AI/ML integration</strong>. I have successfully delivered 
-                projects ranging from enterprise applications to AI-powered solutions, consistently exceeding client expectations.
+              <p>
+                I&apos;m passionate about clean code, innovative solutions, and mentoring the next 
+                generation of developers. My expertise spans across React, Vue.js, TypeScript, 
+                and modern architectural patterns like micro-frontends.
               </p>
-
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                With a Bachelor&apos;s degree in Software Engineering from Air University Islamabad and multiple Microsoft certifications, 
-                I bring both theoretical knowledge and practical experience to every project. I&apos;m passionate about innovation and 
-                always seeking new challenges and opportunities to grow.
+              
+              <p>
+                When I&apos;m not coding, you&apos;ll find me exploring new technologies, contributing to 
+                open-source projects, or sharing knowledge through technical workshops and mentoring sessions.
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-4">
-              <div className="bg-primary/10 text-primary px-4 py-2 rounded-lg">
-                <span className="font-medium">3+ Years Experience</span>
-              </div>
-              <div className="bg-primary/10 text-primary px-4 py-2 rounded-lg">
-                <span className="font-medium">50+ Projects Delivered</span>
-              </div>
-              <div className="bg-primary/10 text-primary px-4 py-2 rounded-lg">
-                <span className="font-medium">Microsoft Certified</span>
-              </div>
-            </div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="mt-8"
+            >
+              <a 
+                href="#contact"
+                className="inline-flex items-center bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-xl font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              >
+                Let&apos;s Connect
+                <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+            </motion.div>
           </motion.div>
 
-          {/* Right Column - Highlights */}
+          {/* Highlights Grid */}
           <motion.div
-            initial={{ x: 50, opacity: 0 }}
-            animate={inView ? { x: 0, opacity: 1 } : {}}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="space-y-6"
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="grid grid-cols-1 sm:grid-cols-2 gap-6"
           >
-            {highlights.map((highlight, index) => {
-              const Icon = highlight.icon;
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={inView ? { y: 0, opacity: 1 } : {}}
-                  transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
-                  className="flex items-start space-x-4 p-6 rounded-xl bg-card border border-border hover:shadow-lg transition-all duration-300"
-                >
-                  <div className="p-3 rounded-lg bg-primary/10 text-primary">
-                    <Icon className="w-6 h-6" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl font-semibold mb-2">{highlight.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed">{highlight.description}</p>
-                  </div>
-                </motion.div>
-              );
-            })}
+            {highlights.map((highlight, index) => (
+              <motion.div
+                key={highlight.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 p-6 rounded-xl border border-blue-100 dark:border-gray-600 hover:shadow-lg transition-all duration-300 group"
+              >
+                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <highlight.icon className="text-white text-xl" />
+                </div>
+                <h4 className="text-lg font-bold text-gray-800 dark:text-white mb-2">
+                  {highlight.title}
+                </h4>
+                <p className="text-gray-600 dark:text-gray-400 text-sm">
+                  {highlight.description}
+                </p>
+              </motion.div>
+            ))}
           </motion.div>
         </div>
-
-        {/* Stats Section */}
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          animate={inView ? { y: 0, opacity: 1 } : {}}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8"
-        >
-          {[
-            { number: '3+', label: 'Years Experience' },
-            { number: '50+', label: 'Projects Completed' },
-            { number: '5', label: 'Certifications' },
-            { number: '10+', label: 'Technologies' }
-          ].map((stat, index) => (
-            <div key={index} className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-primary mb-2">{stat.number}</div>
-              <div className="text-muted-foreground">{stat.label}</div>
-            </div>
-          ))}
-        </motion.div>
       </div>
     </section>
   );
-}
+};
+
+export default About;

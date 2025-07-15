@@ -1,167 +1,189 @@
 'use client';
 
+import React from 'react';
 import { motion } from 'framer-motion';
-import { ChevronDown, Github, Linkedin, Mail, MapPin, Phone } from 'lucide-react';
-import Link from 'next/link';
 import Image from 'next/image';
+import { FaCode, FaRocket, FaLightbulb } from 'react-icons/fa';
+import { personalInfo } from '../../data/personal-info';
+import SocialLinks from '../ui/SocialLinks';
 
-export function Hero() {
+const Hero: React.FC = () => {
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* Background Effects */}
-      <div className="absolute inset-0 hero-gradient" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.15),transparent)] dark:bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.08),transparent)]" />
-      
-      {/* Animated background elements */}
-      <div className="absolute top-20 left-10 w-20 h-20 bg-primary/10 rounded-full blur-xl animate-pulse-slow"></div>
-      <div className="absolute bottom-20 right-10 w-32 h-32 bg-purple-500/10 rounded-full blur-xl animate-bounce-slow"></div>
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+      {/* Animated Background */}
+      <div className="absolute inset-0">
+        <div className="absolute top-0 -left-4 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+        <div className="absolute top-0 -right-4 w-72 h-72 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+        <div className="absolute -bottom-8 left-20 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+      </div>
 
-      <div className="container-padding mx-auto max-w-7xl relative z-10">
-        <div className="text-center space-y-8">
-          {/* Profile Image */}
+      <div className="container mx-auto px-4 z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            className="flex justify-center"
-          >
-            <div className="relative group">
-              <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-primary-500/20 shadow-2xl transition-transform duration-300 group-hover:scale-105 bg-primary-100 dark:bg-primary-900">
-                {/* Using a div with initials as fallback since image might not exist */}
-                <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary-500 to-primary-700 text-white text-4xl font-bold">
-                  FA
-                </div>
-              </div>
-              <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-primary-500/20 to-transparent" />
-              <div className="absolute -inset-4 rounded-full bg-gradient-to-r from-primary-500/20 to-purple-500/20 blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            </div>
-          </motion.div>
-
-          {/* Name and Title */}
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="space-y-4"
-          >
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold">
-              <span className="bg-gradient-to-r from-primary-600 to-primary-800 dark:from-primary-400 dark:to-primary-600 bg-clip-text text-transparent">
-                Faizan Azhar
-              </span>
-            </h1>
-            <div className="space-y-2">
-              <h2 className="text-xl md:text-2xl lg:text-3xl text-muted-foreground font-light">
-                Senior Full Stack Developer
-              </h2>
-              <p className="text-lg md:text-xl text-muted-foreground">
-                AI Engineer & Technical Consultant
-              </p>
-            </div>
-          </motion.div>
-
-          {/* Description */}
-          <motion.p
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
-          >
-            I create high-quality, scalable solutions using modern technologies like{' '}
-            <span className="text-primary-600 dark:text-primary-400 font-medium">Azure</span>,{' '}
-            <span className="text-primary-600 dark:text-primary-400 font-medium">React</span>, and{' '}
-            <span className="text-primary-600 dark:text-primary-400 font-medium">AI/ML</span>.
-            Passionate about innovation and delivering exceptional user experiences.
-          </motion.p>
-
-          {/* Contact Info */}
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            className="flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-6 text-muted-foreground"
-          >
-            <div className="flex items-center space-x-2">
-              <MapPin className="w-4 h-4" />
-              <span>Remote, Ireland</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <Phone className="w-4 h-4" />
-              <span>+923435391151</span>
-            </div>
-          </motion.div>
-
-          {/* Social Links */}
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-            className="flex items-center justify-center space-x-6"
-          >
-            <Link
-              href="https://github.com/faizanazhar"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 rounded-full bg-muted hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-110 group"
-              aria-label="GitHub Profile"
-            >
-              <Github className="w-6 h-6 group-hover:rotate-12 transition-transform duration-300" />
-            </Link>
-            <Link
-              href="https://linkedin.com/in/faizanazhar"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 rounded-full bg-muted hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-110 group"
-              aria-label="LinkedIn Profile"
-            >
-              <Linkedin className="w-6 h-6 group-hover:rotate-12 transition-transform duration-300" />
-            </Link>
-            <Link
-              href="mailto:faziazhar1@gmail.com"
-              className="p-3 rounded-full bg-muted hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-110 group"
-              aria-label="Email Contact"
-            >
-              <Mail className="w-6 h-6 group-hover:rotate-12 transition-transform duration-300" />
-            </Link>
-          </motion.div>
-
-          {/* CTA Buttons */}
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.7 }}
-            className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6"
-          >
-            <Link
-              href="#contact"
-              className="bg-primary text-primary-foreground px-8 py-3 rounded-lg hover:bg-primary/90 transition-all duration-300 font-medium hover:scale-105 shadow-lg hover:shadow-xl"
-            >
-              Let&apos;s Work Together
-            </Link>
-            <Link
-              href="#projects"
-              className="border border-border px-8 py-3 rounded-lg hover:bg-muted transition-all duration-300 font-medium hover:scale-105"
-            >
-              View My Work
-            </Link>
-          </motion.div>
-
-          {/* Scroll Indicator */}
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.8 }}
-            className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center lg:text-left"
           >
             <motion.div
-              animate={{ y: [0, 10, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="p-2 rounded-full border border-border hover:border-primary transition-colors duration-300"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-6 py-2 mb-6 text-white/80"
             >
-              <ChevronDown className="w-6 h-6 text-muted-foreground" />
+              <FaLightbulb className="mr-2 text-yellow-400" />
+              <span className="text-sm font-medium">Available for new opportunities</span>
             </motion.div>
+
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-purple-200 to-purple-400 bg-clip-text text-transparent">
+              {personalInfo.name}
+            </h1>
+            
+            <h2 className="text-2xl md:text-3xl font-semibold text-purple-200 mb-6">
+              {personalInfo.title}
+            </h2>
+            
+            <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+              {personalInfo.summary}
+            </p>
+
+            {/* Stats */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="grid grid-cols-3 gap-6 mb-8 max-w-md mx-auto lg:mx-0"
+            >
+              <div className="text-center">
+                <div className="text-3xl font-bold text-white">7+</div>
+                <div className="text-sm text-purple-200">Years</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-white">50+</div>
+                <div className="text-sm text-purple-200">Projects</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-white">5</div>
+                <div className="text-sm text-purple-200">Companies</div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8"
+            >
+              <a 
+                href="#contact" 
+                className="group relative px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-xl overflow-hidden transition-transform duration-300 hover:scale-105 shadow-lg hover:shadow-purple-500/25"
+              >
+                <span className="relative z-10 flex items-center justify-center">
+                  <FaRocket className="mr-2" />
+                  Let&apos;s Work Together
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-700 to-pink-700 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+              </a>
+              
+              <a 
+                href={personalInfo.resumeUrl} 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-8 py-4 border-2 border-purple-400 text-purple-200 font-semibold rounded-xl hover:bg-purple-400 hover:text-white transition-all duration-300 flex items-center justify-center backdrop-blur-sm"
+              >
+                <FaCode className="mr-2" />
+                View Resume
+              </a>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+            >
+              <SocialLinks />
+            </motion.div>
+          </motion.div>
+
+          {/* Mobile Profile Image */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="flex lg:hidden justify-center mb-8"
+          >
+            <div className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl">
+              <Image
+                src="/faizanpic.jpg"
+                alt={personalInfo.name}
+                width={192}
+                height={192}
+                className="w-full h-full object-cover"
+                priority
+              />
+            </div>
+          </motion.div>
+
+          {/* Desktop Profile Image */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="hidden lg:flex justify-center items-center"
+          >
+            <div className="relative">
+              {/* Profile Image Container */}
+              <div className="relative z-10 w-80 h-80 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl">
+                <Image
+                  src="/faizanpic.jpg"
+                  alt={personalInfo.name}
+                  width={320}
+                  height={320}
+                  className="w-full h-full object-cover"
+                  priority
+                />
+              </div>
+              
+              {/* Floating Icons */}
+              <motion.div
+                animate={{ y: [-20, 20, -20] }}
+                transition={{ duration: 4, repeat: Infinity }}
+                className="absolute -top-10 -right-10 bg-white/10 backdrop-blur-sm p-4 rounded-xl"
+              >
+                <FaCode className="text-3xl text-purple-300" />
+              </motion.div>
+              
+              <motion.div
+                animate={{ y: [20, -20, 20] }}
+                transition={{ duration: 3, repeat: Infinity }}
+                className="absolute -bottom-10 -left-10 bg-white/10 backdrop-blur-sm p-4 rounded-xl"
+              >
+                <FaRocket className="text-3xl text-pink-300" />
+              </motion.div>
+            </div>
           </motion.div>
         </div>
       </div>
+
+      {/* Scroll Indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1 }}
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+      >
+        <a href="#about" className="text-white/60 hover:text-white transition-colors">
+          <motion.div
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
+            className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center"
+          >
+            <div className="w-1 h-3 bg-white/60 rounded-full mt-2"></div>
+          </motion.div>
+        </a>
+      </motion.div>
     </section>
   );
-}
+};
+
+export default Hero;
