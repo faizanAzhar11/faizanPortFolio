@@ -21,4 +21,5 @@ if (Test-Path "out") {
     Write-Host ""
     Write-Host "🎯 Ready for deployment!" -ForegroundColor Cyan
     Write-Host "Files in ./out/ or extract portfolio-deployment.zip" -ForegroundColor White
+    Write-Host "💡 Push to main branch to trigger automatic deployment" -ForegroundColor Yellow
 }
