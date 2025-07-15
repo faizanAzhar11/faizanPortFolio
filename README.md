@@ -132,4 +132,4 @@ A modern, SEO-optimized portfolio website built with Next.js 15, React, TypeScri
 
 ## ?? License
 
-This project is open source and available under the [MIT License](LICENSE).
+This project is open source and available under the [MIT License](LICENSE).# Deployment triggered on 07/15/2025 10:25:57
