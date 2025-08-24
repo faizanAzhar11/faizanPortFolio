@@ -27,6 +27,7 @@ portfolio-website/
 ├── public/
 │   └── resume/
 │       └── Faizan_Azhar_Resume.pdf
+            faizanpic.jpg
 ├── src/
 │   ├── components/
 │   │   ├── layout/
@@ -71,19 +72,7 @@ portfolio-website/
 
 ## 🌐 Deployment
 
-### Vercel (Recommended)
-```bash
-npm install -g vercel
-vercel login
-vercel
-```
 
-### Netlify
-```bash
-npm install -g netlify-cli
-netlify login
-netlify deploy
-```
 
 ### GitHub Pages
 1. Update `next.config.js` with your repository name

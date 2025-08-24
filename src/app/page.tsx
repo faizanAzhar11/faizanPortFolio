@@ -9,6 +9,7 @@ import { Certifications } from '@/components/sections/certifications';
 import Contact from '@/components/sections/contact';
 import Footer from '@/components/layout/footer';
 import BlogPreview from '@/components/sections/blog-preview';
+import { ScrollHandler } from '@/components/ui/ScrollHandler';
 
 export const metadata: Metadata = {
   title: 'Home',
@@ -18,6 +19,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
+      <ScrollHandler />
       <Header />
       <main className="min-h-screen">
         <Hero />

@@ -2,19 +2,43 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { useRouter, usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 import SocialLinks from '../ui/SocialLinks';
 import { personalInfo } from '../../data/personal-info';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const handleNavigation = (href: string) => {
+    if (href.startsWith('#')) {
+      // If we're not on the home page, navigate to home first then scroll
+      if (pathname !== '/') {
+        router.push(`/${href}`);
+        return;
+      }
+      
+      // If we're on the home page, scroll to the section
+      const element = document.getElementById(href.substring(1));
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+      return;
+    }
+
+    // Handle regular navigation
+    router.push(href);
+  };
 
   const navItems = [
-    { name: 'Home', href: '#' },
+    { name: 'Home', href: '/' },
     { name: 'About', href: '#about' },
     { name: 'Experience', href: '#experience' },
-    { name: 'Skills', href: '#skills' },
+    { name: 'Skills', href: '#tech-stack' },
     { name: 'Projects', href: '#projects' },
+    { name: 'Blog', href: '/blog' },
     { name: 'Contact', href: '#contact' }
   ];
 
@@ -30,13 +54,13 @@ const Header: React.FC = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
-              <a
+              <button
                 key={item.name}
-                href={item.href}
+                onClick={() => handleNavigation(item.href)}
                 className="text-gray-600 hover:text-blue-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400"
               >
                 {item.name}
-              </a>
+              </button>
             ))}
             <SocialLinks className="flex items-center gap-3 ml-4" />
           </div>
@@ -64,14 +88,16 @@ const Header: React.FC = () => {
             className="md:hidden mt-4 pb-4"
           >
             {navItems.map((item) => (
-              <a
+              <button
                 key={item.name}
-                href={item.href}
-                className="block py-2 text-gray-600 hover:text-blue-600 transition-colors dark:text-gray-300 dark:hover:text-blue-400"
-                onClick={() => setIsMenuOpen(false)}
+                onClick={() => {
+                  handleNavigation(item.href);
+                  setIsMenuOpen(false);
+                }}
+                className="block w-full text-left py-2 text-gray-600 hover:text-blue-600 transition-colors dark:text-gray-300 dark:hover:text-blue-400"
               >
                 {item.name}
-              </a>
+              </button>
             ))}
             <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
               <SocialLinks className="flex items-center gap-4" />

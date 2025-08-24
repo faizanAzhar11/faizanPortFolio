@@ -11,78 +11,52 @@ export interface ExperienceItem {
 
 export const experiences: ExperienceItem[] = [
   {
-    company: "MeetMaps",
-    position: "Sr. Software Engineer",
-    location: "Remote",
+    company: "Tekenable Ltd",
+    position: "Senior Software Engineer (Full Stack) & Technical Consultant",
+    location: "Remote, Ireland",
     remote: true,
-    period: "2022 - Present",
-    description: "Leading frontend architecture for event management platform, implementing scalable solutions with modern technologies.",
+    period: "Feb 2022 - Present",
+    description: "Leading enterprise software development and delivering innovative Azure-based solutions for international clients. Successfully managing the complete software development lifecycle from requirements gathering to deployment.",
     achievements: [
-      "Led frontend architecture for event management platform",
-      "Implemented TypeScript and micro-frontend architecture",
-      "Achieved significant performance improvements",
-      "Mentored junior developers and conducted code reviews"
+      "Successfully delivered and led EPassport ERA system for international clients with weekly client demos",
+      "Developed AI-powered 'chat with docs' POC that converted to successful client acquisition",
+      "Architected and deployed CI/CD pipelines for Azure Functions and PCF controls",
+      "Created custom Power Apps connectors in C# and media streaming services",
+      "Built 5-level horse pedigree system using PCF in React with React Query",
+      "Developed third-party endpoints for media broadcasting for France and UK markets"
     ],
-    technologies: ["React.js", "TypeScript", "Micro-frontend", "Redux", "Node.js", "Material UI"]
+    technologies: ["Azure OpenAI", "Azure Document Intelligence", "Azure Cognitive Search", "React", "FastAPI", ".NET", ".NET Core", "Python", "Angular", "Power Apps", "Azure", "DevOps", "Docker", "C#"]
   },
   {
-    company: "Nixaam Technologies",
-    position: "Sr. Software Engineer",
-    location: "Karachi",
-    remote: false,
-    period: "2021 - 2022",
-    description: "Developed innovative features for restaurant POS system using React and TypeScript.",
-    achievements: [
-      "Created innovative features for restaurant POS system",
-      "Led React/TypeScript development team",
-      "Improved system performance by 40%",
-      "Implemented real-time order tracking system"
-    ],
-    technologies: ["React.js", "TypeScript", "Node.js", "Material UI", "Socket.io"]
-  },
-  {
-    company: "Logistics Exchange Inc.",
-    position: "Sr. Software Engineer",
-    location: "Remote",
+    company: "Code Breakers",
+    position: "Full-Stack Developer",
+    location: "Remote, USA",
     remote: true,
-    period: "2019 - 2021",
-    description: "Built frontend components for logistics marketplace and optimized site performance.",
+    period: "Oct 2020 - Jan 2022",
+    description: "Developed comprehensive web applications for hospitality and transportation sectors, focusing on scalable solutions and modern architecture patterns.",
     achievements: [
-      "Developed frontend components for logistics marketplace",
-      "Implemented CI/CD pipelines",
-      "Optimized site performance metrics by 60%",
-      "Built responsive web applications"
+      "Developed complete online hotel management system with booking and payment integration",
+      "Built online taxi system with real-time GPS tracking and route optimization",
+      "Implemented scalable backend architecture using Node.js and modern databases",
+      "Integrated Google Maps API for location-based services",
+      "Delivered mobile-responsive applications for better user experience"
     ],
-    technologies: ["Vue.js", "JavaScript", "Webpack", "Jest", "REST APIs", "Vuex"]
+    technologies: ["Node.js", "React", "React Native", "Google Maps API", "Firebase", "JavaScript", "REST APIs"]
   },
   {
-    company: "Logicose",
-    position: "Software Engineer",
-    location: "Karachi",
+    company: "AlphaSquad",
+    position: "Full-Stack Developer",
+    location: "Onsite, Islamabad",
     remote: false,
-    period: "2017 - 2019",
-    description: "Developed e-commerce applications and RESTful APIs for various clients.",
+    period: "Jan 2020 - Sep 2020",
+    description: "Developed and deployed major online education system for Saudi Arabian client, implementing modern web technologies and serverless architecture.",
     achievements: [
-      "Built e-commerce applications using Vue.js",
-      "Developed RESTful APIs with Node.js",
-      "Integrated payment gateways",
-      "Implemented inventory management systems"
+      "Successfully delivered major online education platform for international Saudi client",
+      "Implemented serverless architecture for scalability and cost optimization",
+      "Built interactive learning modules with real-time features",
+      "Integrated GraphQL for efficient data fetching and management",
+      "Developed mobile applications for cross-platform accessibility"
     ],
-    technologies: ["Vue.js", "Node.js", "Express", "MongoDB", "REST APIs"]
-  },
-  {
-    company: "Tabula Rasa Interactive",
-    position: "Associate Developer",
-    location: "Karachi",
-    remote: false,
-    period: "2016 - 2017",
-    description: "Developed frontend applications for startup clients using modern web technologies.",
-    achievements: [
-      "Frontend development for startup clients",
-      "UI development using React.js",
-      "Collaborated with design teams",
-      "Implemented responsive web designs"
-    ],
-    technologies: ["React.js", "JavaScript", "HTML5", "CSS3", "Bootstrap"]
+    technologies: ["Node.js", "React", "React Native", "Serverless", "GraphQL", "Firebase", "JavaScript"]
   }
 ];

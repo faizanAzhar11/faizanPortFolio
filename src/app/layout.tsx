@@ -122,16 +122,32 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                const theme = localStorage.getItem('portfolio-theme') || 'dark';
+                document.documentElement.classList.toggle('dark', theme === 'dark');
+              } catch (e) {
+                document.documentElement.classList.add('dark');
+              }
+            `,
+          }}
+        />
+        <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
+      <body 
+        className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}
+        suppressHydrationWarning={true}
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
-          enableSystem
+          enableSystem={false}
           disableTransitionOnChange
+          storageKey="portfolio-theme"
         >
           {children}
           <Analytics />
